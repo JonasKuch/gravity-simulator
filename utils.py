@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 from scipy.constants import G
+
 
 def newton_force(r, m1, m2):
     return G*(m1*m2)/(r**2)
 
 
-def total_F(coords, masses):
+def total_F(coords:list, masses:list) -> tuple:
     
     n = len(coords)
 
@@ -16,6 +18,8 @@ def total_F(coords, masses):
     for i, coord in enumerate(coords):
         for j in range(i+1, len(coords)):
             r = np.linalg.norm(coord - coords[j])
+            if r == 0:
+                continue
             unit = (coords[j] - coord) / r
 
             F1 = newton_force(r, masses[i], masses[j])*unit
@@ -29,20 +33,24 @@ def total_F(coords, masses):
     return list(Fsum.values()), alist
 
 
-coords = [np.array([1, 1, 1]), np.array([1, 1, 2]), np.array([-1, 1, 1]), np.array([1, 0, 1]), np.array([1, 2, 1])]
-masses = [1, 2, 3, 4, 5]
+def leapfrog_integration(coords:list, velocities:list, masses:list, dt) -> tuple:
+    
+    n = len(coords)
 
-f, a = total_F(coords, masses)
+    forces, accelerations = total_F(coords, masses)
 
-print(f)
+    v_inter = []
+    v_new = []
+    coords_new = []
 
-coords_T = np.array(coords).T
-a_T = np.array(a).T
+    for i in range(n):
+        v_inter.append(velocities[i] + 0.5 * accelerations[i]*dt)
+        coords_new.append(coords[i] + v_inter[i] * dt)
+    
+    forces_new, accelerations_new = total_F(coords_new, masses)
 
-fig = plt.figure()
-ax = fig.add_subplot(projection = '3d')
-ax.set_xlim(-3, 3)
-ax.set_ylim(-3, 3)
-ax.set_zlim(-3, 3)
-ax.quiver(coords_T[0], coords_T[1], coords_T[2], a_T[0], a_T[1], a_T[2], length = 0.5, normalize = 'True')
-plt.show()
+    for i in range(n):
+        v_new.append(v_inter[i] + 0.5 * accelerations_new[i] * dt)
+
+    return coords_new, v_new
+
