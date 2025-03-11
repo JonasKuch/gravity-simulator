@@ -91,5 +91,5 @@ def update(frame, masses:list, dt:float):
     scat._offsets3d = (coords_T[0], coords_T[1], coords_T[2])
     return scat
 
-ani= animation.FuncAnimation(fig=fig, func=update, frames=1000, interval=1, fargs=(masses, dt), cache_frame_data=False)
+ani= animation.FuncAnimation(fig=fig, func=update, frames=1000, interval=1, fargs=(masses, dt), cache_frame_data=True)
 plt.show()
