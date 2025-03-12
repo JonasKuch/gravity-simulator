@@ -8,24 +8,26 @@ from utils import leapfrog_integration
 '''
 Sonne, Erde, Mond
 '''
-coords = [np.array([0, 0, 0], dtype=float), np.array([0, 1.5e11, 0], dtype=float), np.array([0, 1.5e11 + 3.84e8, 0], dtype=float)]
-velocities = [np.array([0, 0, 0], dtype=float), np.array([0, 0, 30000], dtype=float), np.array([0, 0, 1000 + 30000], dtype=float)]
-masses = [1.989e30, 5.972e24, 7.35e22]
-names = ['sun', 'earth', 'moon']
-colors = ['orange', 'cornflowerblue', 'grey']
-autoscale = False
-dt = 1000
+# coords = [np.array([0, 0, 0], dtype=float), np.array([0, 1.5e11, 0], dtype=float), np.array([0, 1.5e11 + 3.84e8, 0], dtype=float)]
+# velocities = [np.array([0, 0, 0], dtype=float), np.array([0, 0, 30000], dtype=float), np.array([0, 0, 1000 + 30000], dtype=float)]
+# masses = [1.989e30, 5.972e24, 7.35e22]
+# names = ['sun', 'earth', 'moon']
+# colors = ['orange', 'cornflowerblue', 'grey']
+# autoscale = False
+# axes_scales = [(-2e11, 2e11), (-2e11, 2e11), (-2e11, 2e11)]
+# dt = 1000
 
 '''
 Drei gleiche Massen
 '''
-# coords = [np.array([1.5e11, 0, 0], dtype=float), np.array([0, 1.5e11, 0], dtype=float), np.array([0, 0, 1.5e11], dtype=float)]
-# velocities = [np.array([30000, 0, 0], dtype=float), np.array([0, 0, -30000], dtype=float), np.array([0, 30000, 0], dtype=float)]
-# masses = [1.989e30, 1.989e30, 1.989e30]
-# names = ['mass1', 'mass2', 'mass3']
-# colors = ['red', 'blue', 'green']
-# autoscale = True
-# dt = 10000
+coords = [np.array([1.5e11, 0, 0], dtype=float), np.array([0, 1.5e11, 0], dtype=float), np.array([0, 0, 1.5e11], dtype=float)]
+velocities = [np.array([30000, 0, 0], dtype=float), np.array([0, 0, -30000], dtype=float), np.array([0, 30000, 0], dtype=float)]
+masses = [1.989e30, 1.989e30, 1.989e30]
+names = ['mass1', 'mass2', 'mass3']
+colors = ['red', 'blue', 'green']
+autoscale = True
+axes_scales = None
+dt = 10000
 
 '''
 Sonnensystem
@@ -33,6 +35,10 @@ Sonnensystem
 # coords = [np.array([0, 0, 0], dtype=float), np.array([0, 1.5e11, 0], dtype=float)]
 # velocities = [np.array([0, 0, 0], dtype=float), np.array([0, 0, 30000], dtype=float)]
 # masses = [1.989e30, 5.972e24]
+# colors = ['orange', 'cornflowerblue', 'grey']
+# autoscale = False
+# axes_scales = [(-2e11, 2e11), (-2e11, 2e11), (-2e11, 2e11)]
+# dt = 1000 ----> alles noch nicht ready
 
 
 traces_list = [[i] for i in coords]
@@ -40,12 +46,10 @@ traces_list = [[i] for i in coords]
 fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
 
-ax.set(xlim3d=(-2e11, 2e11), xlabel='X')
-ax.set(ylim3d=(-2e11, 2e11), ylabel='Y')
-ax.set(zlim3d=(-2e11, 2e11), zlabel='Z')
-ax.set_xlim(-2e11, 2e11)
-ax.set_ylim(-2e11, 2e11)
-ax.set_zlim(-2e11, 2e11)
+if autoscale == False:
+    ax.set_xlim(axes_scales[0])
+    ax.set_ylim(axes_scales[1])
+    ax.set_zlim(axes_scales[2])
 
 scats = []
 traces = []
