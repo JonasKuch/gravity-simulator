@@ -37,7 +37,7 @@ def leapfrog_integration(coords:list, velocities:list, masses:list, dt) -> tuple
     
     n = len(coords)
 
-    forces, accelerations = total_F(coords, masses)
+    forces_old, accelerations = total_F(coords, masses)
 
     v_inter = []
     v_new = []
@@ -52,7 +52,7 @@ def leapfrog_integration(coords:list, velocities:list, masses:list, dt) -> tuple
     for i in range(n):
         v_new.append(v_inter[i] + 0.5 * accelerations_new[i] * dt)
 
-    return coords_new, v_new, forces_new
+    return coords_new, v_new, forces_new, forces_old
 
 
 class body:
