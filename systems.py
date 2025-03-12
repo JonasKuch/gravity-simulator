@@ -6,6 +6,7 @@ def system(systemname = 'Sonnensystem'):
     Sonnensystem
     '''
     if systemname == 'Sonnensystem':
+
         coords = [
             np.array([0, 0, 0], dtype=float),              # Sun
             np.array([0, 4.600e10, 0], dtype=float),       # Mercury
@@ -88,6 +89,7 @@ def system(systemname = 'Sonnensystem'):
     '''
     
     if systemname == 'drei gleiche Massen':
+
         coords = [
             np.array([1.5e11, 0, 0], dtype=float),
             np.array([0, 1.5e11, 0], dtype=float), 
@@ -126,7 +128,7 @@ def system(systemname = 'Sonnensystem'):
     '''
     Sonne, Erde, Mond
     '''
-    if systemname == 'Sonne, Erde Mond':
+    if systemname == 'Sonne, Erde, Mond':
 
         coords = [
             np.array([0, 0, 0], dtype=float),                    # Sonne

@@ -13,6 +13,21 @@ fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
 ax.view_init(elev=0, azim=180)
 
+# Remove grid lines and set dark background
+ax.grid(False)
+
+fig.set_facecolor("black")
+ax.set_facecolor("black")
+
+ax.xaxis.pane.set_edgecolor('none')
+ax.yaxis.pane.set_edgecolor('none')
+ax.zaxis.pane.set_edgecolor('none')
+
+ax.xaxis.pane.fill = False
+ax.yaxis.pane.fill = False
+ax.zaxis.pane.fill = False
+
+# Set scaling
 if autoscale == False:
     ax.set_xlim(axes_scales[0])
     ax.set_ylim(axes_scales[1])
