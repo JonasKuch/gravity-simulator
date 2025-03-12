@@ -52,5 +52,19 @@ def leapfrog_integration(coords:list, velocities:list, masses:list, dt) -> tuple
     for i in range(n):
         v_new.append(v_inter[i] + 0.5 * accelerations_new[i] * dt)
 
-    return coords_new, v_new
+    return coords_new, v_new, forces_new
+
+
+class body:
+
+    def __init__(self, mass, coords, velocity):
+        self.mass = mass
+        self.loc = coords
+        self.v = velocity
+        self.trace = [coords]
+    
+    def draw_location(self, ax = None, size = None, color = None):
+        if ax == None:
+            fig 
+
 

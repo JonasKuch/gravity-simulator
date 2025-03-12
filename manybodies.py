@@ -32,7 +32,7 @@ def update(frame, masses:list, dt:float):
 
     global coords, velocities
 
-    coords, velocities = leapfrog_integration(coords, velocities, masses, dt)
+    coords, velocities, forces = leapfrog_integration(coords, velocities, masses, dt)
     coords_T = np.array(coords).T
 
     coords_list.append(coords[-1])
