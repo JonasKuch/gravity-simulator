@@ -65,6 +65,6 @@ class body:
     
     def draw_location(self, ax = None, size = None, color = None):
         if ax == None:
-            fig 
+            pass
 
 
