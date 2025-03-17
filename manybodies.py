@@ -6,6 +6,8 @@ from utils import leapfrog_integration
 from systems import system
 
 coords, velocities, masses, names, colors, sizes, autoscale, axes_scales, dt = system('Sonnensystem')
+black_background = False
+textcolor = 'black'
 
 traces_list = [[i] for i in coords]
 
@@ -13,19 +15,22 @@ fig = plt.figure()
 ax = fig.add_subplot(projection="3d")
 ax.view_init(elev=0, azim=180)
 
-# Remove grid lines and set dark background
-ax.grid(False)
+if black_background == True:
+    # Remove grid lines and set dark background
+    ax.grid(False)
 
-fig.set_facecolor("black")
-ax.set_facecolor("black")
+    fig.set_facecolor("black")
+    ax.set_facecolor("black")
 
-ax.xaxis.pane.set_edgecolor('none')
-ax.yaxis.pane.set_edgecolor('none')
-ax.zaxis.pane.set_edgecolor('none')
+    ax.xaxis.pane.set_edgecolor('none')
+    ax.yaxis.pane.set_edgecolor('none')
+    ax.zaxis.pane.set_edgecolor('none')
 
-ax.xaxis.pane.fill = False
-ax.yaxis.pane.fill = False
-ax.zaxis.pane.fill = False
+    ax.xaxis.pane.fill = False
+    ax.yaxis.pane.fill = False
+    ax.zaxis.pane.fill = False
+
+    textcolor = 'white'
 
 # Set scaling
 if autoscale == False:
@@ -38,11 +43,13 @@ _, _, _, forces = leapfrog_integration(coords, velocities, masses, dt)
 scats = []
 traces = []
 quivers = []
+text = []
 for i, coord in enumerate(coords):
     scats.append(ax.scatter(coord[0], coord[1], coord[2], label=names[i], color=colors[i], s = sizes[i]))
     traces_data = np.array(traces_list[i]).T
     traces.append(ax.plot(traces_data[0], traces_data[1], traces_data[2], color=colors[i]))
     quivers.append(ax.quiver(coord[0], coord[1], coord[2], forces[i][0], forces[i][1], forces[i][2], normalize = True, length = 2e10, color = colors[i]))
+    text.append(ax.text(coord[0], coord[1], coord[2], names[i], color = textcolor, fontsize=8))
 
 
 def update(frame, masses:list, dt:float, autoscale):
@@ -75,9 +82,11 @@ def update(frame, masses:list, dt:float, autoscale):
         traces[i][0].set_3d_properties(traces_data[2])
         quivers[i].remove()
         quivers[i] = ax.quiver(coord[0], coord[1], coord[2], forces_new[i][0], forces_new[i][1], forces_new[i][2], normalize = True, length = 2e10, color = colors[i])
+        text[i].remove()
+        text[i] = ax.text(coord[0], coord[1], coord[2], names[i], color=textcolor, fontsize=8)
 
     return scats, traces
 
 ani= animation.FuncAnimation(fig=fig, func=update, frames=1000, interval=0, fargs=(masses, dt, autoscale), cache_frame_data=True)
-plt.legend()
+# plt.legend()
 plt.show()

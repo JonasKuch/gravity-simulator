@@ -1,4 +1,5 @@
 import numpy as np
+from numpy import random
 
 def system(systemname = 'Sonnensystem'):
     
@@ -87,7 +88,60 @@ def system(systemname = 'Sonnensystem'):
     '''
     Drei gleiche Massen
     '''
+
+    if systemname == 'zwei gleiche Massen':
+
+        coords = [
+            np.array([0, 0, 0], dtype=float),
+            np.array([0, 1.5e11, 0], dtype=float)
+            ]
+        velocities = [
+            np.array([10000, 0, 0], dtype=float), 
+            np.array([0, 0, -30000], dtype=float)
+            ]
+        masses = [
+            1.989e30, 
+            1.989e30
+            ]
+        names = [
+            'mass1', 
+            'mass2'
+            ]
+        colors = [
+            'red', 
+            'blue'
+            ]
+        sizes = [
+            10,
+            10
+        ]
+        autoscale = True
+        axes_scales = None
+        dt = 10000
+
+
+    '''
+    10 zufällige Massen
+    '''
     
+    if systemname == 'zehn zufällige Massen':
+
+        coords = [np.random.uniform(-3e11, 3e11, 3) for _ in range(10)]
+        
+        velocities = [np.random.uniform(-30000, 30000, 3) for _ in range(10)]
+        
+        masses = [random.uniform(1e24, 2e30) for _ in range(10)]  # zwischen Erdmasse und Sonnenmasse
+        
+        names = [f'mass{i+1}' for i in range(10)]
+        
+        colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'cyan', 'magenta', 'black', 'gray']
+        
+        sizes = [random.randint(5, 15) for _ in range(10)]  # rein visuell
+        
+        autoscale = True
+        axes_scales = None
+        dt = 5000  # etwas kleinere Zeitschritte wegen höherer Komplexität
+
     if systemname == 'drei gleiche Massen':
 
         coords = [
@@ -172,6 +226,6 @@ def system(systemname = 'Sonnensystem'):
 
         autoscale = False
         axes_scales = [(-2e11, 2e11), (-2e11, 2e11), (-2e11, 2e11)]
-        dt = 10000
+        dt = 1000
         
     return coords, velocities, masses, names, colors, sizes, autoscale, axes_scales, dt
