@@ -24,15 +24,6 @@ This project simulates forces and movements of celestial bodies according to New
 Optional (for Jupyter notebook interaction):
 - IPython
 
-### Installation (mit `venv`)
-
-```bash
-python -m venv myenv
-source myenv/bin/activate
-pip install -U pip
-pip install numpy matplotlib scipy
-```
-
 ## ▶️ Execution
 
 Recommended: activate virtual environment and run one of the scripts:
@@ -40,13 +31,6 @@ Recommended: activate virtual environment and run one of the scripts:
 ```bash
 python main.py
 python manybodies.py
-```
-
-In Jupyter:
-
-```python
-%run main.py
-%run manybodies.py
 ```
 
 ## 🌀 Usage
