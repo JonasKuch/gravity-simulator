@@ -68,6 +68,3 @@ python manybodies.py
 - Simulations may become unstable for large `dt` in complex n-body systems.
 - For real accuracy, relativistic corrections and stability checks should be added.
 
----
-
-© 2026 Gravity Simulation
