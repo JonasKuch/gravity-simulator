@@ -76,9 +76,7 @@ In Jupyter:
 ## 🛠️ Future improvements
 
 - Add a CLI (ArgumentParser) for easy scenario selection and simulation duration.
-- Add persistent logging of trajectory data to `.csv` or `.npz`.
 - Add collision detection and mass merging / performance improvements for large N.
-- Add zoom/pan and camera controls for Matplotlib.
 - Add a proper package structure (`gravity/`) with importable API.
 
 ## 👨‍💻 Notes
