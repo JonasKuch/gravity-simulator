@@ -1,7 +1,7 @@
 """gravity/manybodies.py
 
-Mehrkörper-Simulationsskript mit vordefinierten Systemen aus systems.py.
-Visualisiert die Bewegungsverläufe und Kraftvektoren der Körper per Matplotlib-Animation.
+N-body simulation script with predefined scenarios from systems.py.
+Visualizes trajectories and force vectors using Matplotlib animation.
 """
 
 import numpy as np

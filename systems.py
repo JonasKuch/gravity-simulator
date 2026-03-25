@@ -1,6 +1,6 @@
 """gravity/systems.py
 
-Sammelt vordefinierte Himmelskoerper-Konfigurationen (z.B. Sonnensystem, zwei gleiche Massen, etc.).
+Provides predefined celestial body configurations (e.g., solar system, two equal masses, etc.).
 """
 
 import numpy as np

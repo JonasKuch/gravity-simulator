@@ -1,6 +1,6 @@
 """gravity/utils.py
 
-Allgemeine physikalische Funktionen und Leakfrog-Integrationsmethoden fuer N-Körper-Probleme.
+General physics utilities and leapfrog integration methods for n-body problems.
 """
 
 import numpy as np
