@@ -1,3 +1,10 @@
+"""gravity/main.py
+
+Einfache Zwei-Körper-Simulation mit Leapfrog-Integration und Matplotlib-3D-Animation.
+
+Damit können Sie das Bahnsystem von (z.B.) Sonne und Erde im Raum visualisieren.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation

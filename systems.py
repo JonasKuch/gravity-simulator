@@ -1,3 +1,8 @@
+"""gravity/systems.py
+
+Sammelt vordefinierte Himmelskoerper-Konfigurationen (z.B. Sonnensystem, zwei gleiche Massen, etc.).
+"""
+
 import numpy as np
 from numpy import random
 
