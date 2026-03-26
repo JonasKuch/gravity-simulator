@@ -6,8 +6,9 @@ This project simulates forces and movements of celestial bodies according to New
 
 ## 🧩 Project Structure
 
-- `main.py`: Two-body simulation (e.g., Sun + Earth) using leapfrog integration.
-- `manybodies.py`: N-body simulation (solar system, random bodies, 3+ bodies) with trajectory and force vector visualization.
+- `two_bodies.py`: Experimental two-body simulation (e.g., Sun + Earth) using leapfrog integration. Used for testing and validation before moving to n-body systems.
+- `two_bodies.ipynb`: Jupyter notebook version of the two-body simulation for interactive exploration.
+- `n_bodies.py`: Production N-body simulation (solar system, random bodies, 3+ bodies) with trajectory and force vector visualization.
 - `utils.py`: Physics engine:
   - `newton_force` (gravitational force magnitude)
   - `total_F` (n-body force sums + accelerations)
@@ -29,16 +30,16 @@ Optional (for Jupyter notebook interaction):
 Recommended: activate virtual environment and run one of the scripts:
 
 ```bash
-python main.py
-python manybodies.py
+python two_bodies.py
+python n_bodies.py
 ```
 
 ## 🌀 Usage
 
-`main.py` and `manybodies.py` create a `matplotlib.animation.FuncAnimation` and display a 3D window.
+`two_bodies.py` and `n_bodies.py` create a `matplotlib.animation.FuncAnimation` and display a 3D window.
 
-- `main.py` is fixed for a two-body model.
-- `manybodies.py` loads default values from `systems.py` using `system('Sonnensystem')` and can switch by name (e.g. `'zwei gleiche Massen'`, `'zehn zufällige Massen'`).
+- `two_bodies.py` provides experimental testing for a two-body model.
+- `n_bodies.py` is the main simulation for n-body systems. It loads default values from `systems.py` using `system('Sonnensystem')` and can switch by name (e.g. `'zwei gleiche Massen'`, `'zehn zufällige Massen'`).
 
 ## 📌 API (internal)
 
